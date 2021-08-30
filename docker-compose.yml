@@ -1,0 +1,15 @@
+version: "3.9"
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+  redis:
+    image: "redis:alpine"
+  database:
+    image: postgres
+    environment:
+      POSTGRES_USER: config('POSTGRES_USER')
+      POSTGRES_PASSWORD: config('POSTGRES_PASSWORD')
+      POSTGRES_DB: config('POSTGRES_DB')
+    ports: ["5555:5432"]
